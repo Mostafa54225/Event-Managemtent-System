@@ -80,6 +80,9 @@ public class LoginController {
         Background background = new Background(backgroundImage);
         gridPane.setBackground(background);
 
+        // Icon
+        window.getIcons().add(new Image("file:Images/Icon1.jpg"));
+
         // set The scene of the window ("Primary Stage")
         Scene scene = new Scene(gridPane, 600,400);
         window.setScene(scene);

@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class User {
 
-    private String username, password, email, fileName;
+    private String name, username, password, email, fileName;
     private int age, phoneNumber;
 
     public void setFileName(String fileName) {
@@ -17,6 +17,14 @@ public class User {
 
     public String getFileName() {
         return fileName;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUsername() {
