@@ -70,12 +70,10 @@ public class LoginController {
         gridPane.add(pass, 0 ,2);
         gridPane.add(comboBox, 0, 3);
         gridPane.add(loginButton, 0, 4);
-        //gridPane.add(registerButton, 0, 5);
 
 
         // Background Image
-        Image image = new Image("file:Images/test.jpg");
-        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
+        BackgroundImage backgroundImage = new BackgroundImage(new Image("file:Images/test.jpg"), BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         Background background = new Background(backgroundImage);
         gridPane.setBackground(background);
