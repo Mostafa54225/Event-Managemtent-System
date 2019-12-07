@@ -1,6 +1,7 @@
 package sample;
 
 import Admin.*;
+import Customer.RegisterController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -19,7 +20,7 @@ public class LoginController {
     private Stage window;
     private Text welcomeText;
     private static ComboBox<String> comboBox;
-    private Button loginButton;
+    private Button loginButton, registerButton;
     public static TextField user;
     public static PasswordField pass;
 
@@ -49,6 +50,9 @@ public class LoginController {
         comboBox.setItems(options);
         loginButton = new Button("Login");
         loginButton.setPrefSize(150, 23);
+
+        registerButton = new Button("Register");
+        registerButton.setPrefSize(150, 23);
         User admin = new Admin1();
         loginButton.setOnAction(e -> {
             try {
@@ -64,13 +68,18 @@ public class LoginController {
             }
         });
 
+        registerButton.setOnAction(e->{
+            RegisterController RC = new RegisterController();
+            RC.start(window);
+        });
+
         // Build the Layout
         gridPane.add(welcomeText, 0, 0);
         gridPane.add(user, 0, 1);
         gridPane.add(pass, 0 ,2);
         gridPane.add(comboBox, 0, 3);
         gridPane.add(loginButton, 0, 4);
-        //gridPane.add(registerButton, 0, 5);
+        gridPane.add(registerButton, 0, 5);
 
 
         // Background Image
