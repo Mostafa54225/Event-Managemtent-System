@@ -43,7 +43,11 @@ public class LoginController {
         pass.setPromptText("Password");
 
         // Options to choose between them to login
-        ObservableList<String> options = FXCollections.observableArrayList("Admin", "Customer", "Project Manager", "Service Provider");
+        ObservableList<String> options = FXCollections.observableArrayList(
+                "Admin",
+                "Customer",
+                "Project Manager",
+                "Service Provider");
         comboBox = new ComboBox<>();
         comboBox.setPromptText("Choose");
         comboBox.setPrefSize(150, 23);

@@ -1,43 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Customer;
 
+import Request.RequestCustomer;
+import Request.RequestEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 /**
  *
  * @author Khalifa
  */
 public class EventRegisterController {
-    Stage window;
-    Scene EInfoScene;
-    GridPane layout;
-    HBox food;
-    Label EnameLbl, EtypeLbl, noOfPplLbl,foodLbl, cityLbl,EdateLbl;
-    TextField nameInput, emailInput, EnameInput, noOfPplInput, cityInput;
-    ComboBox EtypeCB;
-    CheckBox dinner,breakfast,lunch;
-    DatePicker Edate;
-    Button submitBtn;
-    boolean answer;
+    private Stage window;
+    private HBox food;
+    private Label EnameLbl, EtypeLbl, noOfPplLbl,foodLbl, cityLbl,EdateLbl;
+    private Button submitBtn;
+    public static TextField EnameInput, noOfPplInput, cityInput;
+    public static ComboBox EtypeCB;
+    public static CheckBox dinner,breakfast,lunch;
+    public static DatePicker Edate;
+
+    public static int id = 1;
+    private boolean answer;
     
     public void start(Stage primaryStage) {
         window = primaryStage;
-        window.setTitle("Event egister");
+        window.setTitle("Event Register");
         
         window.setOnCloseRequest(e->{
             e.consume();
@@ -46,8 +41,8 @@ public class EventRegisterController {
                 window.close();
             }
                     });
-        
-        layout = new GridPane();
+
+        GridPane layout = new GridPane();
         layout.setVgap(8);
         layout.setHgap(8);
         
@@ -73,6 +68,7 @@ public class EventRegisterController {
                 "political",
                 "Sport"
         );
+        EtypeCB.setPromptText("Choose");
         EtypeCB.setEditable(true);
         
         noOfPplLbl = new Label("Number of vistors :");
@@ -82,7 +78,7 @@ public class EventRegisterController {
         noOfPplInput.setPromptText("ex:500");
         noOfPplInput.setPrefSize(200, 23);
         GridPane.setConstraints(noOfPplInput, 1, 2);
-        
+
         food = new HBox();
         
         foodLbl = new Label("Food :");
@@ -114,26 +110,51 @@ public class EventRegisterController {
         cityInput.setPromptText("ex:Cairo");
         cityInput.setPrefSize(200, 23);
         GridPane.setConstraints(cityInput, 1, 5);
-        
+
+
+        // to get Value from RadioButton
+        RadioButton radioButton = (RadioButton)RegisterController.genderGroup.getSelectedToggle();
         
         
         submitBtn = new Button("Submit");
         submitBtn.setPrefSize(200, 23);
         GridPane.setConstraints(submitBtn, 1, 6);
-        submitBtn.setOnAction(e->{
-            /*
-            ///////////////////////////////////////////////////////
-            <<<<<<<<<<<<<<<(Mostafa writes code here)>>>>>>>>>>>>>>
-            \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-            */
+
+
+        RequestCustomer request = new RequestCustomer();
+        RequestEvent requestEvent = new RequestEvent();
+
+
+        submitBtn.setOnAction(e-> {
+            if(EnameInput.getText().isEmpty() || noOfPplInput.getText().isEmpty() || cityInput.getText().isEmpty()
+            || EtypeCB.getSelectionModel().isEmpty() || Edate.getValue() == null){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Please Enter Your Details Completely");
+                alert.showAndWait();
+            }
+            else {
+                try {
+                    request.addGuest(request.getFileName(), RegisterController.nameInput.getText(), RegisterController.emailInput.getText(), radioButton);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                requestEvent.addEvent(requestEvent.getFileName());
+
+                Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
+                alertInfo.setContentText("You Registered Successfully :)");
+                alertInfo.showAndWait();
+                // Disable Submit Button After Registration
+                submitBtn.setDisable(true);
+            }
+
         });
         
         layout.getChildren().addAll(EnameLbl,EnameInput,EtypeLbl,EtypeCB,noOfPplLbl,noOfPplInput,foodLbl,food,cityLbl,cityInput,submitBtn,EdateLbl,Edate);
         layout.setAlignment(Pos.CENTER);
-        
-        
-        EInfoScene = new Scene(layout,500,600);    //event information scene
-        
+
+
+        Scene EInfoScene = new Scene(layout, 500, 600);    //event information scene
+
         window.setScene(EInfoScene);
         window.show();
     }

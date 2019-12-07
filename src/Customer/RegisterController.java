@@ -1,37 +1,28 @@
 package Customer;
 
-import javafx.application.Application;
+import Request.RequestCustomer;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Khalifa
- */
 public class RegisterController {
-    Stage window;
-    Scene PInfoScene;
-    GridPane layout;
-    HBox gender;
-    Label nameLbl, emailLbl, genderLbl;
-    TextField nameInput, emailInput;
-    RadioButton maleRB,femaleRB;
-    ToggleGroup genderGroup;
-    Button nextBtn;
-    boolean answer;
-    
+    private Stage window;
+    private GridPane layout;
+    private HBox gender;
+    private Label nameLbl, emailLbl, genderLbl;
+    private Button nextBtn;
+    public static TextField nameInput, emailInput;
+    public static RadioButton maleRB,femaleRB;
+    public static ToggleGroup genderGroup;
+
+    private boolean answer;
+
     public void start(Stage primaryStage) {
         window = primaryStage;
         window.setTitle("Register");
@@ -41,13 +32,13 @@ public class RegisterController {
             if(answer) {
                 window.close();
             }
-                    });
+        });
         //layout declare and set gaps
         layout = new GridPane();
         layout.setVgap(8);
         layout.setHgap(8);
         
-        //componants declration 
+        //Components  Declaration
         nameLbl = new Label("Name :");
         GridPane.setConstraints(nameLbl, 0, 0);
         
@@ -76,23 +67,36 @@ public class RegisterController {
         femaleRB.setToggleGroup(genderGroup);
         gender = new HBox();
         femaleRB.setPadding(new Insets(0, 0, 0 ,50));
-        
+
+
+
         gender.getChildren().addAll(maleRB,femaleRB);
         GridPane.setConstraints(gender,1,3);
         
-        //next buuton to take you to event scene
+        //next Button to take you to event scene
         nextBtn = new Button("Next"); 
         nextBtn.setPrefSize(200, 23);
         GridPane.setConstraints(nextBtn, 1, 4);
+        RequestCustomer request = new RequestCustomer();
+
         nextBtn.setOnAction(e->{
-            EventRegisterController ERC = new EventRegisterController();
-            ERC.start(window);
+            if(nameInput.getText().isEmpty() || emailInput.getText().isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Please Enter Your Email and Username");
+                alert.showAndWait();
+            }
+
+            else {
+                EventRegisterController ERC = new EventRegisterController();
+                ERC.start(window);
+            }
         });
+
         
         layout.getChildren().addAll(nameLbl,nameInput,emailLbl,emailInput,genderLbl,gender,nextBtn);
         layout.setAlignment(Pos.CENTER);
-        
-        PInfoScene = new Scene(layout,500,600);  //personal information scene
+
+        Scene PInfoScene = new Scene(layout, 500, 600);  //personal information scene
         window.setScene(PInfoScene);
         window.show();
     }
