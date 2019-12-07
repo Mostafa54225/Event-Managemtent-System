@@ -26,8 +26,8 @@ public class RegisterController {
     GridPane layout;
     HBox gender;
     Label nameLbl, emailLbl, genderLbl;
-    TextField nameInput, emailInput;
-    RadioButton maleRB,femaleRB;
+    public static TextField nameInput, emailInput;
+    public static RadioButton maleRB,femaleRB;
     ToggleGroup genderGroup;
     Button nextBtn;
     boolean answer;
