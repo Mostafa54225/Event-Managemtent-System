@@ -37,6 +37,8 @@ public class AlertBox {
         
         Button yes = new Button("Yes");
         Button no = new Button("No");
+        yes.setPrefSize(80, 30);
+        no.setPrefSize(80, 30);
         
         yes.setOnAction(e->{
             answer = true;
