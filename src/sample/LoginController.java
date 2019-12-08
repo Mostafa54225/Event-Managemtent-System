@@ -1,6 +1,8 @@
 package sample;
 
 import Admin.*;
+import Customer.Customer1;
+import Customer.CustomerController;
 import Customer.RegisterController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,6 +25,7 @@ public class LoginController {
     private Button loginButton, registerButton;
     public static TextField user;
     public static PasswordField pass;
+    Customer1 register;
 
     public void start(Stage primaryStage)  {
         window = primaryStage;
@@ -58,6 +61,7 @@ public class LoginController {
         registerButton = new Button("Register");
         registerButton.setPrefSize(150, 23);
         User admin = new Admin1();
+        //register = new Customer1(); ///////////////////////////////////////////////////<<<ERROR>>>//////////////////////////////////
         loginButton.setOnAction(e -> {
             try {
                 if(comboBox.getSelectionModel().isSelected(0)){
@@ -67,6 +71,13 @@ public class LoginController {
                         a.start(window);
                     }
                 }
+                if(comboBox.getSelectionModel().isSelected(1)){ ///////////////////////////////////////////////////////////////////////////
+                    if(admin.isLogin(admin.getFileName(), user.getText(), pass.getText())) { //////////<<<<REPLACE admin with customer object>>>>////////////////////////////////
+                        CustomerController c = new CustomerController();  /////////////////////////////////////////////////////////////////
+                        c.start(window); //////////////////////////////////////////////////////////////////////////////////////////////////
+                    }
+                }
+                
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

@@ -11,3 +11,4 @@
 9#ICT#Technology#500#Giza#2020-01-11#No Food
 10#I#Coaching#50#Cairo#2020-01-11#Lunch 
 11#Kl#religous#350#Cairo#2020-01-11#Lunch 
+12#ICT#Coaching#800#Giza#2020-01-11#No Food

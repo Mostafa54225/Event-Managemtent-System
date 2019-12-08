@@ -58,23 +58,4 @@ public class AlertBox {
         window.showAndWait();
         return answer;
     }
-    
-    public static void errorAlert(String title,String message) {
-        Stage window = new Stage();
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle(title);
-        window.setMinWidth(280);
-        window.setMinHeight(250);
-        Label lbl = new Label(message);
-        VBox layout = new VBox();
-        Button btn = new Button("ok");
-        btn.setOnAction(e->window.close());
-        layout.getChildren().addAll(lbl,btn);
-        layout.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(layout);
-        window.setScene(scene);
-        window.showAndWait();
-        
-    }
-        
 }

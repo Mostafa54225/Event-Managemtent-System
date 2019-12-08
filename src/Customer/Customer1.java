@@ -5,20 +5,40 @@
  */
 package Customer;
 
+import static Customer.RegisterController.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
 import sample.User;
 
 public class Customer1 extends User {
-    private String filenameGuests = "Files/RegisterGuests.txt";
-    private String password;
+    private final String filenameGuests = "Files/RegisterGuests.txt";
+    private final String name = nameInput.getText();
+    private final String email = emailInput.getText();
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
     
+    @Override
     public String getFileName() {
         return filenameGuests;
     }
@@ -28,19 +48,20 @@ public class Customer1 extends User {
 
         BufferedWriter bufferedWriter = null;
         File file = new File(filenameGuests);
-        password = PasswordGenerator.generatePassword(8);
+        setPassword(PasswordGenerator.generatePassword(8));
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(file, true));
             if(file.length() == 0){
-                bufferedWriter.write("1" + "#" + password + "#" + name + "#" + email + "#" + r.getText() + "\n");
+                setId(1);
+                bufferedWriter.write(getId() + "#" + getPassword() + "#" + name + "#" + email + "#" + r.getText() + "\n");
             } else {
-                int id = reId() + 1;
-                bufferedWriter.write(id + "#" + password + "#" + name + "#" + email + "#" + r.getText() + "\n");
+                setId(reId() + 1);
+                bufferedWriter.write(getId() + "#" + getPassword() + "#" + name + "#" + email + "#" + r.getText() + "\n");
             }
 
 
 
-        } catch (Exception e) { ///////////////////////////ERROR///////////////////////////
+        } catch (Exception e) { 
             //e.printStackTrace();
             System.err.println("Error! 3");
         } finally {
@@ -52,6 +73,7 @@ public class Customer1 extends User {
                 System.err.println("Error! 4");
             }
         }
+        //MailSender.sendMail(getEmail(),"Dear "+ getName() + ", \n"+ "Your ID is : "+ getId() + " and your password is : " + getPassword());
     }
 
     // Method for get the last id entered into the file
@@ -66,5 +88,30 @@ public class Customer1 extends User {
         
         return Integer.parseInt(s[0]);
     }
+    
+    public boolean isLogin(String fileName, String id, String pass) throws IOException {
+        boolean flag = false;
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(fileName));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        if(br != null){
+            String string;
+            while ((string = br.readLine()) != null){
+                String[] split = string.split("#");
+                if(id.equals(split[0]) && pass.equals(split[1]))
+                    flag = true;
+                else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Check Your Username and Password then try again!");
+                    alert.showAndWait();
+                }
+            }
+        }
+        return flag;
+    }
+    
 }
 
