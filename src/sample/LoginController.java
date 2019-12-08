@@ -20,8 +20,7 @@ public class LoginController {
     private Stage window;
     private Text welcomeText;
     private static ComboBox<String> comboBox;
-    private Button loginButton;
-    private Button registerButton;
+    private Button loginButton, registerButton;
     public static TextField user;
     public static PasswordField pass;
 
@@ -44,13 +43,18 @@ public class LoginController {
         pass.setPromptText("Password");
 
         // Options to choose between them to login
-        ObservableList<String> options = FXCollections.observableArrayList("Admin", "Customer", "Project Manager", "Service Provider");
+        ObservableList<String> options = FXCollections.observableArrayList(
+                "Admin",
+                "Customer",
+                "Project Manager",
+                "Service Provider");
         comboBox = new ComboBox<>();
         comboBox.setPromptText("Choose");
         comboBox.setPrefSize(150, 23);
         comboBox.setItems(options);
         loginButton = new Button("Login");
         loginButton.setPrefSize(150, 23);
+
         registerButton = new Button("Register");
         registerButton.setPrefSize(150, 23);
         User admin = new Admin1();
@@ -67,7 +71,7 @@ public class LoginController {
                 ex.printStackTrace();
             }
         });
-        
+
         registerButton.setOnAction(e->{
             RegisterController RC = new RegisterController();
             RC.start(window);

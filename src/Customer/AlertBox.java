@@ -1,10 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Customer;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,14 +16,7 @@ import javafx.stage.Stage;
  * @author Khalifa
  */
 public class AlertBox {
-    
-    
-    
-    
-    
-    
-    
-    
+
     private static boolean answer;
     public static boolean check(String title, String message) {
         Stage window = new Stage();
@@ -33,12 +24,15 @@ public class AlertBox {
         window.setTitle(title);
         window.setWidth(500);
         window.setMinHeight(200);
-       
-        
+
+
+
         Button yes = new Button("Yes");
         Button no = new Button("No");
-        yes.setPrefSize(80, 30);
-        no.setPrefSize(80, 30);
+        yes.setPrefSize(70, 30);
+        no.setPrefSize(70, 30);
+
+
         
         yes.setOnAction(e->{
             answer = true;
@@ -55,7 +49,9 @@ public class AlertBox {
         VBox layout = new VBox();
         layout.getChildren().addAll(lbl,yes,no);
         layout.setAlignment(Pos.CENTER);
-        
+        // For Spacing between Buttons (Yes, No)
+        layout.setSpacing(10);
+
         Scene scene = new Scene(layout);
         
         window.setScene(scene);
@@ -67,7 +63,7 @@ public class AlertBox {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
-        window.setMinWidth(300);
+        window.setMinWidth(280);
         window.setMinHeight(250);
         Label lbl = new Label(message);
         VBox layout = new VBox();

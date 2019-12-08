@@ -6,11 +6,6 @@ public class Admin1 extends  User{
 
     private String username, password;
 
-    /*public Admin1() {
-        username = LoginController.user.getText();
-        password = LoginController.pass.getText();
-    }*/
-
     private String fileName = "Files/AdminLogin.txt";
     public void setFileName(String fileName) {
         this.fileName = fileName;
