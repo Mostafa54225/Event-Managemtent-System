@@ -1,3 +1,5 @@
 1#Deep Learnging#Technology#500#Cairo#2019-12-26#Lunch 
 2#ML#Technology#140#Giza#2019-12-18#Dinner 
 3#Football#Sport#600#Nasr City#2019-12-23#Dinner 
+4#Web#Technology#600#Cairo#2019-12-24#Dinner 
+5#AI#Technology#250#Giza#2019-12-09#No Food

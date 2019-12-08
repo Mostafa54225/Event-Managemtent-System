@@ -24,18 +24,28 @@ public class RequestEvent extends User {
     public void addEvent(String filename){
 
         String result = "";
+        boolean c = false;
         BufferedWriter bufferedWriter = null;
         File file = new File(filename);
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(file, true));
 
             // For Get Value from Check Box
-            if(EventRegisterController.breakfast.isSelected())
-                result += "Breakfast ";
-            if(EventRegisterController.lunch.isSelected())
-                result += "Lunch ";
-            if(EventRegisterController.dinner.isSelected())
-                result += "Dinner ";
+            if(EventRegisterController.breakfast.isSelected()){
+                result += EventRegisterController.breakfast.getText() + " ";
+                c = true;
+            }
+            if(EventRegisterController.lunch.isSelected()){
+                result += EventRegisterController.lunch.getText() + " ";
+                c = true;
+            }
+            if(EventRegisterController.dinner.isSelected()){
+                result += EventRegisterController.dinner.getText() + " ";
+                c = true;
+            }
+            if(!c)
+                result = "No Food";
+
 
             if(file.length() == 0){
                 // Add Records to The File

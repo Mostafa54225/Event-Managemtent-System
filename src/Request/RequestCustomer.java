@@ -1,10 +1,7 @@
 package Request;
 
 import Customer.RegisterController;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.Toggle;
 import sample.User;
 
 import java.io.*;
@@ -13,7 +10,9 @@ public class RequestCustomer extends User {
 
     // the name of file "Register Guests"
     private String filenameGuests = "Files/RegisterGuests.txt";
-
+    private String email = RegisterController.emailInput.getText();
+    private String name = RegisterController.nameInput.getText();
+    private int phoneNumber;
 
     // Override Methods from User Class to set The File
     @Override
@@ -24,6 +23,23 @@ public class RequestCustomer extends User {
     @Override
     public String getFileName() {
         return filenameGuests;
+    }
+
+    // Methods for Customer Only
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
 

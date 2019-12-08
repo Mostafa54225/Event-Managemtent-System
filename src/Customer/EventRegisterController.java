@@ -134,7 +134,7 @@ public class EventRegisterController {
             }
             else {
                 try {
-                    request.addGuest(request.getFileName(), RegisterController.nameInput.getText(), RegisterController.emailInput.getText(), radioButton);
+                    request.addGuest(request.getFileName(), request.getName(), request.getEmail(), radioButton);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
