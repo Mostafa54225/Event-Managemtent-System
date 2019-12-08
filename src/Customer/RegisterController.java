@@ -1,6 +1,5 @@
 package Customer;
 
-import Request.RequestCustomer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;

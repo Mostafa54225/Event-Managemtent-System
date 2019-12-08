@@ -1,2 +1,13 @@
 1#ICT#Technology#900#Cairo#2020-02-18#Breakfast Dinner 
 2#ICM#Technology#900#Cairo#2020-01-15#Breakfast 
+1#Deep Learnging#Technology#500#Cairo#2019-12-26#Lunch 
+2#ML#Technology#140#Giza#2019-12-18#Dinner 
+3#Football#Sport#600#Nasr City#2019-12-23#Dinner 
+4#Web#Technology#600#Cairo#2019-12-24#Dinner 
+5#AI#Technology#250#Giza#2019-12-09#No Food
+6#KM#Motivation#200#Giza#2020-01-11#No Food
+7#Mah#political#800#Giza#2020-01-09#Lunch 
+8#ICT#Technology#500#Cairo#2020-01-09#Lunch 
+9#ICT#Technology#500#Giza#2020-01-11#No Food
+10#I#Coaching#50#Cairo#2020-01-11#Lunch 
+11#Kl#religous#350#Cairo#2020-01-11#Lunch 

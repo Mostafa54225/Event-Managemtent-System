@@ -1,7 +1,6 @@
 
 package Customer;
 
-import Request.RequestCustomer;
 import Request.RequestEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,6 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 /**
  *
@@ -122,7 +122,6 @@ public class EventRegisterController {
         submitBtn.setPrefSize(200, 23);
         GridPane.setConstraints(submitBtn, 1, 6);
 
-
         Customer1 register = new Customer1();
         RequestEvent requestEvent = new RequestEvent();
 
@@ -134,14 +133,16 @@ public class EventRegisterController {
                 alert.setContentText("Please Enter Your Details Completely");
                 alert.showAndWait();
             }
+
             else {
                 try {
-                    register.addGuest(register.getFileName(), RegisterController.nameInput.getText(), RegisterController.emailInput.getText(), radioButton);
+                    register.addGuest(register.getFileName(), register.getName(), register.getEmail(), radioButton);
+                    MailSender.sendMail(register.getEmail(),"Dear "+ register.getName() + ", \n"+ "Your ID is : "+ register.getId() + " and your password is : " + register.getPassword());
                 } catch (IOException ex) {
                     Logger.getLogger(EventRegisterController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 requestEvent.addEvent(requestEvent.getFileName());
-
+                
                 Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
                 alertInfo.setContentText("You Registered Successfully :)");
                 alertInfo.showAndWait();
